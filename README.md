@@ -1,39 +1,10 @@
-# Due Date: June 17, 2018 at 11:59 PM.
-
-TODO Please edit the following information in your assignment
-
-- Name: Prateek Pisat
-- How many hours did it take you to complete this assignment?<br>
-  30 Hours
-- Did you collaborate with any other students/TAs/Professors?<br>
-  No.
-- Did you use any external resources? (Cite them below)<br>
-  IO Redirection : http://www.sarathlakshman.com/2012/09/24/implementation-overview-of-redirection-and-pipe-operators-in-shell<br>
-  Background Process : https://stackoverflow.com/questions/8319484/regarding-background-processes-using-fork-and-child-processes-in-my-dummy-shel<br>
-  Child Exits: https://docs.oracle.com/cd/E19455-01/806-4750/signals-7/index.html<br>
-  Pipes: http://tldp.org/LDP/lpg/node11.html
-
-- (Optional) What was your favorite part of the assignment?
-- (Optional) How would you improve the assignment?
-
-## Extra Credit Attempt:
-- Support for arbitrary pipe operators.
-
-# Logistics
-
-For this assignment, you must login into the servers through `your_ccis_name@login.ccs.neu.edu` to complete the assignment. The reason is because the examples I will provide below are compiled strictly for our machines architecture, and this is where your submission will be graded.
-
 ## Introduction
-
-For this assignment, you will be writing your very own shell-- the mini-shell.
 
 <img src="./shell.png" alt="An example shell"/>
 
 [Shell's](https://en.wikipedia.org/wiki/Shell_(computing)) (or sometimes called command-line interfaces) are text based applications that serve as an intermediate between the user and the operating system. The shell is also a tool for how a user interacts with the operating system. Previously, we have written many scripts that our shell can execute by running various programs. The shell that you build with this assignment will be something you can continually expand on in the future, and perhaps distribute as your own. Let us take a closer look at the parts to get started.
 
 ### Part 1 - Parser
-
-For part one of this assignment, you will need to learn how to do some parsing. This would be similar to the first part of building a compiler or interpeter for a programming language. A shell is an interactive interpreter of a command-line language.
 
 1. It takes in a line of code (READ)
 2. Parses the command (EVALUATES)
@@ -77,14 +48,7 @@ For example (See the line of input and the associated tokens separated onto a ne
     2
     ```
 
-* Hints: The function `strtok` will be useful for splitting up a line of input.
-  * `strtok` works by splitting up an input based on a delimeter (in our example a space or a '|').
-  * `strtok` is part of the `string.h` library, so be sure to include it.
-  * My expectation is Part 1 of this assignment should be relatively short and useful for implementing the shell as a whole!
-
 ### Part 2 - Signals
-
-In your shell, you will have to implement a signal handler. We have briefly discussed signal handlers, so make sure you are familiar with the concept.
 
 Provided below is a simple example that you can use.
 
@@ -120,8 +84,6 @@ int main(){
 * The following article provides a nice introduction as well: https://www.thegeekstuff.com/2012/03/catch-signals-sample-c-code/
 
 ### Part 3 - Mini-Shell
-
-You are now going to create Mini-Shell. Mini-Shell is inspired by other popular shells. The good news is you can validate the behavior of your shell against the Unix terminal to ensure it is working.
 
 At a high level, implementing mini-shell takes the following components:
 1. You will have a function that reads in commands a user types.
@@ -173,47 +135,3 @@ NOTES:
 
 The crux of the implementation of the command is a linked-list. The linked-list stores all the commands that were entered into the shell. This is done inserting a new node at the beginning of the linked-list, so that the newly executed command is always at the top.<br>
 When the command is called with an argument,(this must be an integer), the most recent n commands are printed, by traversing the linked-list for n elements(or the last element, whichever comes first). If no argument is specified, all the command in the stack are printed by traversing the entire linked-list.
-
------------------------------------------------------
-
-# Rubric
-
-1. 10% for completing Part 1 - Parse
-3. 90% for completing Part 3 - Mini-Shell (rough rubric below)
-	1. 20% 1 Built-in command of your choice (and documentation)
-	2. 20% 3 built-in commands.
-	3. 10% A working signal handler
-	4. 20% A shell that runs forever and has the 'mini-shell>' prompt and properly parses programs.
-	5. 20% Can successfully execute processse in the foreground and background.
-
-# Resources to help
-
-- (See links above)
-- And otherwise think about commands like fork, execvp, wait, waitpid, getpid, etc. :)
-
-### Glossary and Tips
-1. Commit your code changes to the repository often, this is best practice.
-2. Do not commit your .o file or your executable file to the repository, this is considered bad practice!
-3. On Functionality/Style
-	1. You should have comments in your code to explain what is going on, and use good style (80 characters per line maximum for example, functions that are less than 50 lines, well named variables, well named functions etc.).
-4. You may use any stdio.h functions that are useful, such as getline. You are welcome to implement these functions from scratch if you like however.
-	1. You will want to include 'signal.h' as well for your signal handlers.
-
-# Going Further
-
-You might consider some of the following optional features in your shell.
-1. Switching processes between forground and background (fg and bg commands).
-2. Handling the '|', pipe  between an arbitrary number of processes.
-3. Handle tab completion or moving through the history of commands with arrowkeys.
-
-# Feedback Loop
-
-(An optional task that will reinforce your learning throughout the semester)
-
-Implementing a shell is one of the more fun exercises in learning C programming (in my opinion). However, it is quite relevant, especially in the context of the web browser and other applications (video games for example, often have a real-time shell interface for debugging).
-
-Choose one of the following 3 papers to skim, and you can add notes here with two interesting things you discovered (Note this is not graded and completely optional).
-
-- Grocoli: https://dl.acm.org/citation.cfm?id=2442019
-- Integrating Command Shell in Web Browser: https://www.usenix.org/techsessionssummary/integrating-command-shell-web-browser
-- Inky: http://people.csail.mit.edu/emax/papers/uist08-inky/uist08-inky.pdf
